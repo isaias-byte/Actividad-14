@@ -12,13 +12,13 @@ def usuario():
             print(data)
 
             if(crear_usuario(data["correo"], data["contraseña"])):
-                return jsonify({"code": "ok"})
+                return jsonify({"code": "Usuario registrado exitosamente"})
             else:
-                return jsonify({"code": "existe"})
+                return jsonify({"code": "El Usuario ya existe"})
 
-            return jsonify({"code": "ok"})
+            #return jsonify({"code": "ok"})
         except:
-            return jsonify({"code": "error"})
+            return jsonify({"code": "Error al tratar de registrar Usuario"})
 
 @app.route("/ap1/v1/sesiones", methods=["POST"])
 def sesion():
@@ -29,11 +29,11 @@ def sesion():
             contra=data["contraseña"]
             id, ok = iniciar_sesion(correo, contra)
             if(ok):
-                return jsonify({"code": "ok", "id": id})
+                return jsonify({"code": "Iniciaste Sesión", "id": id})
             else:
-                return jsonify({"code": "no existe"})
+                return jsonify({"code": "No existe el Usuario"})
         except:
-            return jsonify({"code": "error"})
+            return jsonify({"code": "Error..."})
 
 app.run(debug=True)
 
